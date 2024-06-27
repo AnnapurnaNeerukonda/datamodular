@@ -15,7 +15,6 @@ const DisplayDetails: React.FC = () => {
   const [data, setData] = useState<DataItem[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedStatus, setSelectedStatus] = useState<string>('');
-  const [date, setDate] = useState<DateRange | undefined>();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,11 +69,7 @@ const DisplayDetails: React.FC = () => {
             Inactive
           </Button>
         </div>
-      <div className="flex mb-4">
-        
-        <DatePickerWithRange date={date} setDate={setDate} />
-        
-      </div>
+      
 
       <DataTable columns={columns} data={filteredData} />
     </div>

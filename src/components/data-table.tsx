@@ -27,6 +27,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { DatePickerWithRange } from '@/app/users/DateRangePicker';
 
 // Define your data type
 interface UserData {
@@ -78,6 +79,7 @@ export function DataTable<TData, TValue>({
   const [globalFilter, setGlobalFilter] = useState('');
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [selectedStatus, setSelectedStatus] = useState<string>('');
+  const [date, setDate] = useState<DateRange | undefined>();
 
   const table = useReactTable({
     data,
@@ -120,8 +122,9 @@ export function DataTable<TData, TValue>({
             className='max-w-sm'
           />
         </div>
-
-        {/* Status dropdown */}
+<div className='flex items-center  justify-end'>
+        <div className='mr-0'>
+          {/* Status dropdown */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant='outline' className='ml-auto'>
@@ -141,6 +144,9 @@ export function DataTable<TData, TValue>({
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
+        <div className=' ml-4'><DatePickerWithRange date={date} setDate={setDate} /></div>
+        
 
         {/* Column visibility */}
         <DropdownMenu>
@@ -166,7 +172,7 @@ export function DataTable<TData, TValue>({
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-
+      </div>
       {/* Table */}
       <div className='rounded-md border'>
         <Table>
